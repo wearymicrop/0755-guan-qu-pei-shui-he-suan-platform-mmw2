@@ -1,0 +1,35 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><div><h2>合并后配水账</h2>
+<small>变更 {{ current.change_id or '—' }} ·
+{% if current.state == 'ready' %}可下发{% elif current.state == 'review' %}对平待复核{% else %}挂起暂停下发{% endif %}
+· 挂账保底 {{ current.reserve_l }} L · 断流渠损耗留痕 {{ current.superseded_loss_l }} L · 守恒差额 {{ current.difference_l }} L</small></div></div>
+
+{% if not current.adjudications %}
+<p>本样例无合并变更，沿用常规调度回执。</p>
+{% else %}
+<section class="verdict">
+<h3>裁决口径</h3>
+<ol>{% for line in current.verdict %}<li>{{ line }}</li>{% endfor %}</ol>
+</section>
+
+<h3>一、权证承接裁决</h3>
+{{ ledger(current.adjudications,[('斗口','outlet',''),('旧渠','old_channel',''),('新渠','new_channel',''),('承接状态','state',''),('历史保底 L','legacy_minimum_l','num'),('承接保底 L','carried_minimum_l','num'),('挂账 L','reserved_l','num'),('事由','reason_code','')]) }}
+
+<h3>二、可下发配水账（含挂起行）</h3>
+{{ ledger(current.dispatch_ledger,[('回执号','receipt',''),('斗口','outlet',''),('渠段','channel',''),('实配 L','allocated_l','num'),('挂账 L','reserved_l','num'),('状态','state','')]) }}
+
+<h3>三、渠道迁移前后逐级对账</h3>
+{{ ledger(current.channel_reconcile,[('渠段','channel',''),('类别','kind',''),('入流前 L','inflow_before_l','num'),('入流后 L','inflow_after_l','num'),('分走前 L','child_inflow_before_l','num'),('分走后 L','child_inflow_after_l','num'),('损耗前 L','loss_before_l','num'),('损耗后 L','loss_after_l','num'),('实配前 L','allocated_before_l','num'),('实配后 L','allocated_after_l','num'),('余水前 L','remainder_before_l','num'),('余水后 L','remainder_after_l','num')]) }}
+
+<h3>四、斗口保底与余水对账</h3>
+{{ ledger(current.outlet_reconcile,[('斗口','outlet',''),('状态','state',''),('历史保底 L','legacy_minimum_l','num'),('承接保底 L','carried_minimum_l','num'),('迁移前实配 L','allocated_before_l','num'),('合并后实配 L','allocated_after_l','num'),('挂账 L','reserved_l','num')]) }}
+
+<h3>五、逐级小计</h3>
+<div class="scroll"><table><thead><tr><th>层级</th><th>名称</th><th>关键量</th></tr></thead><tbody>
+{% for row in current.subtotals %}<tr><td>{{ row.level }}</td><td>{{ row.name }}</td><td>
+{% if row.level == '渠首' %}供水 {{ row.supply_before_l }} → {{ row.supply_after_l }} L；损耗 {{ row.loss_before_l }} → {{ row.loss_after_l }} L；实配 {{ row.allocated_before_l }} → {{ row.allocated_after_l }} L；余水 {{ row.remaining_before_l }} → {{ row.remaining_after_l }} L
+{% elif row.level == '断开支渠' %}迁移前损耗 {{ row.loss_before_l }} L、实配 {{ row.allocated_before_l }} L、余水 {{ row.remaining_before_l }} L；合并后不计入
+{% else %}承接 {{ row.carried_count }} 户、挂起 {{ row.suspended_count }} 户、仅新权 {{ row.current_only_count }} 户、挂账保底 {{ row.reserved_l }} L
+{% endif %}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endif %}

@@ -12,6 +12,8 @@ from app.modules.m6_balance.handler import router as balance_router
 from app.modules.m6_balance.rules import run as balance
 from app.modules.m7_dispatch.handler import router as dispatch_router
 from app.modules.m7_dispatch.rules import run as dispatch
+from app.modules.m8_merge.handler import router as merge_router
+from app.modules.m8_merge.rules import run as merge
 
 TABLES = ("gates", "rights", "channels")
 HOME = "tail"
@@ -23,4 +25,5 @@ STAGES = (
     ("tail", "尾量调平", tail, tail_router),
     ("balance", "斗口勾稽", balance, balance_router),
     ("dispatch", "调度回执", dispatch, dispatch_router),
+    ("merge", "合并承接", merge, merge_router),
 )

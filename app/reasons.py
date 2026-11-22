@@ -7,4 +7,10 @@ REASONS = {
     "CHANNEL_DISCONNECTED": "渠段未接入渠首或存在环路", "CHILD_FLOW_EXCESS": "支渠入流超出上游净流量",
     "RIGHT_ROUTE_BLOCKED": "权证对应渠段不可配水", "MINIMUM_SHORTAGE": "可用流量低于保底需求",
     "DUPLICATE_OUTLET": "斗口重复扣账", "CHANNEL_UNBALANCED": "渠段水量差异",
+    "MERGE_BAD": "合并变更行有误", "MERGE_DUPLICATE": "合并变更重复登记",
+    "MERGE_CONFLICT": "同一斗口承接关系冲突", "MERGE_PENDING": "承接关系未确认，斗口挂起",
+    "MERGE_NO_TARGET": "新渠缺少承接权证，斗口挂起", "MERGE_NO_LEGACY": "新渠权证无历史归属",
+    "MERGE_CEILING_CONFLICT": "历史保底超新渠上限，斗口挂起",
+    "MERGE_RIGHTS_OVERLAP": "斗口权证重叠，承接挂起", "MERGE_MIN_LIFTED": "承接保底就高保护",
+    "MERGE_TERMS_REVIEW": "权证条款变更待复核", "MERGE_RESERVE_EXCESS": "挂账保底超出新渠余量",
 }

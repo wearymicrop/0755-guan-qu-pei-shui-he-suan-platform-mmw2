@@ -3,7 +3,7 @@ import json
 from app.errors import InputError
 from app.settings import ROOT
 
-SAMPLE_NAMES = {"clean": "干净样例", "dirty": "脏样例"}
+SAMPLE_NAMES = {"clean": "干净样例", "dirty": "脏样例", "merged": "支渠合并样例"}
 
 
 def load_sample(name):

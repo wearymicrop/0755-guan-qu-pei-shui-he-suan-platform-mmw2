@@ -1,8 +1,8 @@
 # 接口与证据
 
 - `GET /api/health` 返回项目和规则版本。
-- `GET /api/{模块}/{样例}` 单独计算到该阶段。模块与样例见深度登记。
-- `POST /api/runs` 接收 `{"sample":"clean"}`、`{"sample":"dirty"}` 或 `{"data":{…}}`，返回完整计算和归档 ID。
+- `GET /api/{模块}/{样例}` 单独计算到该阶段。模块与样例见深度登记（合并承接为 `merge`，样例含 `merged`）。
+- `POST /api/runs` 接收 `{"sample":"clean"}`、`{"sample":"dirty"}`、`{"sample":"merged"}` 或 `{"data":{…}}`，返回完整计算和归档 ID。输入可携带可选的 `merges` 表触发 M8。
 - `GET /api/runs/{id}` 查询不可变归档。`POST /api/runs/{id}/rerun` 用归档输入与当前规则运行。相同规则与来源复用原记录。
 - `GET /api/runs/{id}/export` 下载 JSON 证据。内含批次设置、各输入表、原行号、各阶段计算及规则版本。
 

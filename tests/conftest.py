@@ -17,6 +17,11 @@ def dirty_data():
 
 
 @pytest.fixture
+def merged_data():
+    return load_sample("merged")
+
+
+@pytest.fixture
 def clean(clean_data):
     return calculate(clean_data)
 
@@ -24,6 +29,11 @@ def clean(clean_data):
 @pytest.fixture
 def dirty(dirty_data):
     return calculate(dirty_data)
+
+
+@pytest.fixture
+def merged(merged_data):
+    return calculate(merged_data)
 
 
 @pytest.fixture

@@ -4,7 +4,7 @@ from app.manifest import canonical
 
 
 def validate(data):
-    if not isinstance(data, dict) or set(data) != set(TABLES) | {"config"}:
+    if not isinstance(data, dict) or not set(TABLES) <= set(data) <= set(TABLES) | {"config", "merges"}:
         raise InputError("INPUT_TABLES", "输入表或批次设置不齐")
     if not isinstance(data["config"], dict):
         raise InputError("INPUT_CONFIG", "批次设置有误")
