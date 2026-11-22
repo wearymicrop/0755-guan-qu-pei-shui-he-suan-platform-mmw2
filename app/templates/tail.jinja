@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><div><h2>斗口实配清单</h2><small>{{ current.allocations|length }} 个斗口 · 尾量 {{ current.tail_l }} L</small></div><label>查找斗口 <input id="outlet-filter" type="search" placeholder="编号或渠段"></label></div>
+<div id="allocation-table">{{ ledger(current.allocations,[('斗口','outlet',''),('渠段','channel',''),('优先级','priority','num'),('理论值 L','target_l','num'),('尾量 L','tail_l','num'),('实配 L','allocated_l','num')]) }}</div><p id="filter-empty" hidden>未找到匹配斗口。</p>

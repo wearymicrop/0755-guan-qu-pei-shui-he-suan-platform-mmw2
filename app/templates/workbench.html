@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titles[stage] }} · {{ project }}</title>
+<link rel="stylesheet" href="/static/theme.css"><link rel="stylesheet" href="/static/layout.css"><link rel="stylesheet" href="/static/components.css">
+<script src="/static/controls.js" defer></script><script src="/static/filter.js" defer></script>
+</head>
+<body data-sample="{{ sample }}">
+<aside><a class="brand" href="/?sample={{ sample }}"><b>灌</b><span>{{ project }}</span></a>
+<nav aria-label="配水流程">{% for id, caption in titles.items() %}<a href="/work/{{ id }}?sample={{ sample }}" {% if id==stage %}aria-current="page"{% endif %}>{{ caption }}</a>{% endfor %}</nav>
+<div class="side-data"><span>调度批次</span><strong>{{ result.batches.batch }}</strong><small>规则 {{ rule_version }} · UTC+08</small></div></aside>
+<main>
+<header><div><p class="eyebrow">青禾灌区 / 轮灌台账</p><h1>{{ titles[stage] }}</h1></div><form id="controls"><label>数据来源 <select id="sample" name="sample">{% for id, label in samples.items() %}<option value="{{ id }}" {% if id==sample %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label><button>核算归档</button></form></header>
+{% set balance = result.balance %}
+<section class="kpis" aria-label="水量汇总">
+{% for label, value in [('渠首供水',balance.supply_l),('核定渠损',balance.loss_l),('斗口实配',balance.allocated_l),('剩余水量',balance.remaining_l)] %}<div><span>{{ label }}</span><strong>{{ '{:,}'.format(value) }} <small>L</small></strong></div>{% endfor %}
+</section>
+<div class="station">
+<section class="panel primary">{% include stage ~ '.jinja' %}</section>
+<div class="side-panels">
+<section class="panel hydro"><h2>水量阶梯</h2><div class="steps">
+{% for label,value in [('渠首',balance.supply_l),('扣损后',balance.supply_l-balance.loss_l),('未配水',balance.remaining_l)] %}<div><span>{{ label }}</span><strong>{{ '{:,}'.format(value) }}</strong><i style="--level:{{ (100 * value / balance.supply_l) if balance.supply_l else 0 }}%"></i></div>{% endfor %}
+</div><div id="balance" class="signal {{ balance.status|lower }}">{% if balance.status=='MATCHED' %}配水已对平{% elif balance.status=='REVIEW' %}已对平 · 待复核{% else %}水量存在差异{% endif %} <span>差额 {{ balance.difference_l }} L</span></div></section>
+<section class="panel log" id="issues"><h2>异常证据 <small>{{ balance.issues|length }} 条</small></h2>
+<div class="issue-list">{% for item in balance.issues %}<details><summary>{{ item.label }}</summary><code>{{ item.code }}</code>{% for src in item.sources %}<p>{{ src.table }} #{{ src.line }}</p><pre>{{ src.raw|tojson(indent=2) }}</pre>{% endfor %}</details>{% else %}<p>本轮无异常。</p>{% endfor %}</div></section>
+</div></div>
+<footer><span>输入校验值 {{ input_ref }} · 最小单位 {{ result.batches.quantum_l }} L</span><span id="run-status" role="status">待归档</span><div class="archive"><button id="rerun" type="button" hidden>重跑归档</button><a id="export" hidden>导出证据</a></div></footer>
+</main></body></html>

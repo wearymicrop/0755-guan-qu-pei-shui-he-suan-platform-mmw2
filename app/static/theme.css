@@ -1,0 +1,8 @@
+:root {
+  color-scheme: dark;
+  --bg: #11152a; --surface: #191f38; --surface-2: #141a32;
+  --line: #323c5c; --line-strong: #4e6180; --ink: #e4ecff; --ink-muted: #a0b2ce;
+  --accent: #78f3d0; --accent-ink: #142c2b; --ok: #8eee91; --warn: #f4c685; --bad: #ff9b9b;
+  --font-ui: ui-monospace, "PingFang SC", "Microsoft YaHei", monospace;
+  --radius: 4px; --gap: 12px; --pad: 15px; --grid-height: 40px;
+}

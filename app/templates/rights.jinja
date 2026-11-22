@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><div><h2>取水权有效期</h2><small>生效 {{ current.active|length }} 份</small></div></div>
+{{ ledger(current.records,[('斗口','outlet',''),('渠段','channel',''),('权证','version',''),('状态','state',''),('保底 L','minimum_l','num'),('上限 L','ceiling_l','num')]) }}

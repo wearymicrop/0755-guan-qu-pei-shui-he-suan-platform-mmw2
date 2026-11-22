@@ -1,0 +1,239 @@
+{
+  "config": {
+    "start": "2026-11-20T08:00:00+08:00",
+    "end": "2026-11-20T12:00:00+08:00",
+    "batch": "LG-1120-01",
+    "root": "总干渠",
+    "supply": "19.75",
+    "unit": "m³",
+    "quantum_l": 100
+  },
+  "channels": [
+    {
+      "channel": "总干渠",
+      "parent": null,
+      "inflow": "19.75",
+      "loss": "1.15",
+      "unit": "m³"
+    },
+    {
+      "channel": "东支渠",
+      "parent": "总干渠",
+      "inflow": "9.35",
+      "loss": "0.3",
+      "unit": "m³"
+    },
+    {
+      "channel": "西支渠",
+      "parent": "总干渠",
+      "inflow": "6.6",
+      "loss": "0.6",
+      "unit": "m³"
+    },
+    {
+      "channel": "北斗渠",
+      "parent": "东支渠",
+      "inflow": "1.05",
+      "loss": "0.07",
+      "unit": "m³"
+    },
+    {
+      "channel": "南斗渠",
+      "parent": "西支渠",
+      "inflow": "0",
+      "loss": "0",
+      "unit": "m³"
+    },
+    {
+      "channel": "苗圃渠",
+      "parent": "西支渠",
+      "inflow": "1",
+      "loss": "0.2",
+      "unit": "m³"
+    }
+  ],
+  "gates": [
+    {
+      "channel": "总干渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "open"
+    },
+    {
+      "channel": "东支渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "open"
+    },
+    {
+      "channel": "西支渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "open"
+    },
+    {
+      "channel": "北斗渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "open"
+    },
+    {
+      "channel": "南斗渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "closed"
+    },
+    {
+      "channel": "苗圃渠",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "state": "open"
+    }
+  ],
+  "rights": [
+    {
+      "outlet": "001",
+      "channel": "东支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "6",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "002",
+      "channel": "东支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "6",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 2
+    },
+    {
+      "outlet": "003",
+      "channel": "东支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "6",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 3
+    },
+    {
+      "outlet": "004",
+      "channel": "东支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "6",
+      "unit": "m³",
+      "priority": 2,
+      "weight": 1
+    },
+    {
+      "outlet": "011",
+      "channel": "西支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.8",
+      "ceiling": "3",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 2
+    },
+    {
+      "outlet": "012",
+      "channel": "西支渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.7",
+      "ceiling": "3",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "020",
+      "channel": "总干渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "2",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "031",
+      "channel": "北斗渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.2",
+      "ceiling": "0.8",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "032",
+      "channel": "北斗渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.2",
+      "ceiling": "0.8",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "041",
+      "channel": "苗圃渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.1",
+      "ceiling": "0.5",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    },
+    {
+      "outlet": "042",
+      "channel": "苗圃渠",
+      "version": "2026-B",
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T12:00:00+08:00",
+      "minimum": "0.2",
+      "ceiling": "0.4",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 2
+    },
+    {
+      "outlet": "001",
+      "channel": "东支渠",
+      "version": "2026-A",
+      "start": "2026-11-01T00:00:00+08:00",
+      "end": "2026-11-20T08:00:00+08:00",
+      "minimum": "1",
+      "ceiling": "6",
+      "unit": "m³",
+      "priority": 1,
+      "weight": 1
+    }
+  ]
+}

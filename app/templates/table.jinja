@@ -1,0 +1,6 @@
+{% macro ledger(records, fields) %}
+<div class="scroll"><table><thead><tr>{% for name, key, kind in fields %}<th class="{{ kind }}" scope="col">{{ name }}</th>{% endfor %}<th scope="col">原行</th></tr></thead>
+<tbody>{% for row in records %}<tr data-row>{% for name, key, kind in fields %}<td class="{{ kind }}">{{ row[key] if key in row and row[key] is not none else '—' }}</td>{% endfor %}
+<td>{% set sources = row.sources or ([row.source] if row.source else []) %}{% if sources %}<details><summary>{{ sources[0].table }} #{{ sources[0].line }}</summary>{% for src in sources %}<pre>{{ src.raw|tojson(indent=2) }}</pre>{% endfor %}</details>{% else %}—{% endif %}</td></tr>
+{% else %}<tr><td colspan="{{ fields|length + 1 }}">暂无可核算记录。</td></tr>{% endfor %}</tbody></table></div>
+{% endmacro %}

@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><h2>逐渠勾稽</h2><small>差额 {{ current.difference_l }} L</small></div>
+{{ ledger(current.ledgers,[('渠段','channel',''),('入流 L','inflow_l','num'),('损耗 L','loss_l','num'),('支渠取流 L','child_inflow_l','num'),('实配 L','allocated_l','num'),('未配 L','remainder_l','num')]) }}

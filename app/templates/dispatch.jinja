@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><h2>轮灌回执</h2><small>{{ current.receipt_l }} L · {{ '可下发' if current.state=='ready' else '暂停下发' }}</small></div>
+{{ ledger(current.receipts,[('回执号','receipt',''),('渠段','channel',''),('斗口','outlet',''),('实配 L','allocated_l','num')]) }}

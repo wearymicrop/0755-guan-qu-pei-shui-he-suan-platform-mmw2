@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><div><h2>闸门调度表</h2><small>{{ current.start }} 至 {{ current.end }}</small></div></div>
+{{ ledger(current.records,[('渠段','channel',''),('闸令状态','state','')]) }}

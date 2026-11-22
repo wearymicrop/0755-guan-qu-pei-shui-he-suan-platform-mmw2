@@ -1,0 +1,3 @@
+{% from 'table.jinja' import ledger %}
+<div class="panel-head"><h2>渠段流量拆分</h2></div>
+{{ ledger(current.channels,[('渠段','channel',''),('上游','parent',''),('入流 L','inflow_l','num'),('损耗 L','loss_l','num'),('支渠取流 L','child_inflow_l','num'),('本段可配 L','usable_l','num')]) }}
